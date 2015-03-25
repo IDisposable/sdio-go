@@ -415,7 +415,7 @@ int calc_altsectscore(hwidmatch_t *hwidmatch,state_t *state,int curscore)
 
     //log_file("Sc:%d\n\n",curscore);
     if(flags&FLAG_FILTERSP)return 2;
-    if(StrStrIA(getdrp_infpath(),"tweak"))return 1;
+    if(StrStrIA(getdrp_infpath(hwidmatch),"tweak"))return 1;
     return isvalidcat(hwidmatch,state)?2:1;
 }
 

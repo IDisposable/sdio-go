@@ -873,12 +873,12 @@ void mkdir_r(const WCHAR *path)
     while((p=wcschr(p,L'\\')))
     {
         *p=0;
-        if(_wmkdir(buf)<0&&errno!=EEXIST)
+        if(_wmkdir(buf)<0&&errno!=EEXIST&&lstrlen(buf)>2)
             log_err("ERROR in mkdir_r(): failed _wmkdir(%ws,%d)\n",buf,errno);
         *p=L'\\';
         p++;
     }
-    if(_wmkdir(buf)<0&&errno!=EEXIST)
+    if(_wmkdir(buf)<0&&errno!=EEXIST&&lstrlen(buf)>2)
         log_err("ERROR in mkdir_r(): failed _wmkdir(%ws,%d)\n",buf,errno);
 }
 //}

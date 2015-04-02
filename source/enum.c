@@ -446,6 +446,7 @@ void state_fakeOSversion(state_t *state)
         state->platform.dwMajorVersion=virtual_os_version/10;
         state->platform.dwMinorVersion=virtual_os_version%10;
     }
+    if(state->platform.dwMajorVersion==10)flags|=FLAG_FAILSAFE;
 }
 
 void state_print(state_t *state)

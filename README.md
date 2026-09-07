@@ -1,10 +1,12 @@
+![Snappy Driver Installer: Go Forth](assets/branding/social-preview.png)
+
 # SDIO Go rewrite
 
 Snappy Driver Installer: Go Forth - a Go rewrite of the Snappy Driver
 Installer Origin engine, replacing the C++Builder/VCL codebase under
 `../source`. Developed on branch `go-rewrite`.
 
-[![Release](https://github.com/IDisposable/sdio-go/actions/workflows/release.yml/badge.svg)](https://github.com/IDisposable/sdio-go/actions/workflows/release.yml)
+[![Release](https://github.com/IDisposable/snappy-driver-installer-origin/actions/workflows/release.yml/badge.svg)](https://github.com/IDisposable/snappy-driver-installer-origin/actions/workflows/release.yml)
 
 ## What this is
 

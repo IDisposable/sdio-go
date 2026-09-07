@@ -585,7 +585,7 @@ func (m model) View() string {
 const aboutView = `Snappy Driver Installer: Go Forth
 A Go reimplementation of Snappy Driver Installer Origin
 
-Source: github.com/IDisposable/sdio-go
+Source: github.com/IDisposable/snappy-driver-installer-origin
 
 Based on Snappy Driver Installer Origin
   Home page: www.snappy-driver-installer.org

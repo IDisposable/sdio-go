@@ -1,6 +1,7 @@
 package main
 
 import (
+	"strings"
 	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
@@ -36,18 +37,58 @@ const splashBanner = ` ██████╗  ██████╗      ██�
 ╚██████╔╝╚██████╔╝     ██║     ╚██████╔╝██║  ██║   ██║   ██║  ██║
  ╚═════╝  ╚═════╝      ╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝`
 
-// splashStyle centers splashBanner and its subtitle in the terminal
-// and gives the banner itself a bit of color - the only screen in the
+// splashStyle gives splashBanner its color - the only screen in the
 // TUI that's purely decorative, so it's the one place a splash of
 // color doesn't fight with the table/status styling used everywhere
 // else.
 var splashStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("39")).Bold(true)
 
-// splashView renders screenSplash: splashBanner plus a subtitle,
-// centered in the terminal - see splashDuration/tickSplashCmd for how
-// long it stays up.
+// Brand colors from the diamond mark (assets/branding/icon.svg): the
+// top facet, the left facet, and the right facet.
+var (
+	markTopStyle   = lipgloss.NewStyle().Foreground(lipgloss.Color("#00ADD8")).Bold(true)
+	markLeftStyle  = lipgloss.NewStyle().Foreground(lipgloss.Color("#CE3262")).Bold(true)
+	markRightStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("#00758D")).Bold(true)
+)
+
+// diamondMark renders the icon's three-facet diamond as block-character
+// ASCII art, split the same way as the SVG: a solid top facet over two
+// halves colored left/right. Built row by row instead of as a literal
+// so the two triangles and the facet split line up exactly.
+func diamondMark() string {
+	const n = 4 // half-height in rows; the widest row is 2*n-2 units wide
+	var lines []string
+	for r := 0; r < 2*n-1; r++ {
+		width := n - abs(r-(n-1))
+		pad := strings.Repeat("  ", n-width)
+		if r < n-1 {
+			// Top facet: still widening, full width in one color.
+			lines = append(lines, pad+markTopStyle.Render(strings.Repeat("██", width))+pad)
+			continue
+		}
+		left := (width + 1) / 2
+		right := width - left
+		row := markLeftStyle.Render(strings.Repeat("██", left)) +
+			markRightStyle.Render(strings.Repeat("██", right))
+		lines = append(lines, pad+row+pad)
+	}
+	return strings.Join(lines, "\n")
+}
+
+func abs(v int) int {
+	if v < 0 {
+		return -v
+	}
+	return v
+}
+
+// splashView renders screenSplash: the diamond mark beside splashBanner,
+// plus a subtitle, centered in the terminal - see splashDuration/
+// tickSplashCmd for how long it stays up.
 func (m model) splashView() string {
-	body := splashStyle.Render(splashBanner) + "\n\n" +
+	lockup := lipgloss.JoinHorizontal(lipgloss.Center,
+		diamondMark(), "   ", splashStyle.Render(splashBanner))
+	body := lockup + "\n\n" +
 		"Snappy Driver Installer - reimplemented in Go\n\n" +
 		"press any key to skip..."
 	if m.width <= 0 || m.height <= 0 {

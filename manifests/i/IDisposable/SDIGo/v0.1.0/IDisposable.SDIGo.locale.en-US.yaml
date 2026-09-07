@@ -8,5 +8,11 @@ Publisher: IDisposable
 PackageName: 'Snappy Driver Installer: Go Forth'
 License: GPL
 ShortDescription: 'Snappy Driver Installer: Go Forth'
+Icons:
+- IconUrl: https://raw.githubusercontent.com/IDisposable/snappy-driver-installer-origin/cdffeeca2542974c31d550e148da6256d59d2772/assets/branding/icons/icon-256.png
+  IconFileType: png
+  IconResolution: 256x256
+  IconTheme: default
+  IconSha256: 6A2F17F1D16F02E55BD793B020EBA669DB053B2A1AB917B8E5EFF0FBF1BD2A83
 ManifestType: defaultLocale
 ManifestVersion: 1.12.0

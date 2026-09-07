@@ -1,4 +1,14 @@
 {
+  "RT_GROUP_ICON": {
+    "APP": {
+      "0000": [
+        "../../../assets/branding/icons/icon-16.png",
+        "../../../assets/branding/icons/icon-32.png",
+        "../../../assets/branding/icons/icon-48.png",
+        "../../../assets/branding/icons/icon-256.png"
+      ]
+    }
+  },
   "RT_MANIFEST": {
     "#1": {
       "0409": {

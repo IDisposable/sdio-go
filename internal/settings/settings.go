@@ -61,7 +61,7 @@ type Settings struct {
 }
 
 // DynamicTorrentURL is the mutable torrent source selected by -torrent-file=*.
-const DynamicTorrentURL = "https://github.com/IDisposable/snappy-driver-installer-origin/raw/refs/heads/main/seed/SDIO_Update.torrent"
+const DynamicTorrentURL = "https://github.com/IDisposable/sdio-go/raw/refs/heads/main/seed/SDIO_Update.torrent"
 
 // TorrentSource returns a user-selected source, the dynamic source for
 // a literal "*", or an empty string for the embedded torrent.

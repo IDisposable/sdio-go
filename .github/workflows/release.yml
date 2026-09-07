@@ -36,3 +36,10 @@ jobs:
             sdigo.exe
             sdigo.exe.sha256
           generate_release_notes: true
+
+      - name: Submit WinGet package
+        uses: vedantmgoyal9/winget-releaser@v2
+        with:
+          identifier: IDisposable.SDIGo
+          installers-regex: '^sdigo\.exe$'
+          token: ${{ secrets.WINGET_CREATE_TOKEN }}

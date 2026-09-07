@@ -585,19 +585,19 @@ func (m model) View() string {
 const aboutView = `Snappy Driver Installer: Go Forth
 A Go reimplementation of Snappy Driver Installer Origin
 
-Source: github.com/IDisposable/snappy-driver-installer-origin
+Source: github.com/IDisposable/sdio-go
 
 Based on Snappy Driver Installer Origin
   Home page: www.snappy-driver-installer.org
 
-Snappy Driver Installer Origin is free software: you can redistribute
-it and/or modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation, either version 3 of the
-License or (at your option) any later version. See
-https://www.gnu.org/licenses/ for the full text.
+SDIO-go is free software: you can redistribute it and/or modify it 
+under the terms of the GNU General Public License as published by 
+the Free Software Foundation, either version 3 of the License or
+(at your option) any later version. See https://www.gnu.org/licenses/
+for the full text.
 
-This reimplementation carries the same license, being a derivative
-work of the original source.
+This reimplementation carries the same license as the original source,
+this being a derivative work of the original source.
 
 Built with:
   github.com/anacrolix/torrent
@@ -621,9 +621,14 @@ func (m model) opLogView() string {
 	}
 	var b strings.Builder
 	if m.opLogIsError {
-		b.WriteString(cautionStyle.Render("FAILED") + " - esc/q: back to " + dest + "\n\n")
+		b.WriteString(cautionStyle.Render("FAILED"))
+		b.WriteString(" - esc/q: back to ")
+		b.WriteString(dest)
+		b.WriteString("\n\n")
 	} else {
-		b.WriteString("Log - enter/esc/q: back to " + dest + "\n\n")
+		b.WriteString("Log - enter/esc/q: back to ")
+		b.WriteString(dest)
+		b.WriteString("\n\n")
 	}
 	for _, line := range m.opLog {
 		fmt.Fprintf(&b, "%s\n", line)

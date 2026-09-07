@@ -30,6 +30,13 @@ resource; only a release build goes through `./scripts/release.sh`.
 `.github/workflows/release.yml` runs this same script on a `v*.*.*` tag
 push and attaches the resulting `sdigo.exe` to a GitHub Release.
 
+After the release is created, the workflow submits `IDisposable.SDIGo` to
+the WinGet community repository with `vedantmgoyal9/winget-releaser`. Add a
+`WINGET_CREATE_TOKEN` repository secret with permission to submit pull
+requests to `microsoft/winget-pkgs` before enabling this step. The package is
+published as a portable x64 executable. The first submission may require
+manual review and acceptance by the WinGet repository maintainers.
+
 `.github/workflows/verify.yaml` runs on pull requests, pushes to `main` or
 `go-rewrite`, and manual dispatch. It runs the test suite and vet, checks the
 release script syntax and embedded torrent seed, cross-builds the Windows
